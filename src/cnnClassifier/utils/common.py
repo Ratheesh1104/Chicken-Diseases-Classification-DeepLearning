@@ -14,14 +14,15 @@ import base64
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
-    """reads yaml file and returns"""
+    """Reads a YAML file and returns its content as a ConfigBox object."""
     try:
         with open(path_to_yaml) as yaml_file:
             content = yaml.safe_load(yaml_file)
-            logger.info(f"yaml file: {path_to_yaml} loaded successfully")
+            logger.info(f"YAML file: {path_to_yaml} loaded successfully")
+            print("Loaded YAML content:", content)  # Debug: Print the loaded YAML content
             return ConfigBox(content)
     except BoxValueError:
-        raise ValueError("yaml file is empty")
+        raise ValueError("YAML file is empty")
     except Exception as e:
         raise e
     
